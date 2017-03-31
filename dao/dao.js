@@ -1,34 +1,33 @@
-module.exports = function(model) {
+'use strict'
 
-	var self = this;
-    
-	var mongoose = require('mongoose');    
-	mongoose.connect('mongodb://localhost/contas');
-	
-	self.model = mongoose.model('Conta', model);
+module.exports = function (model) {
+  var self = this
 
-	self.list = function(callback) {
-		self.model.find(callback);
-	};
+  var mongoose = require('mongoose')
+  mongoose.connect('mongodb://localhost/contas')
 
-	self.search = function(contaId, callback) {
-		self.model.findOne({ id: contaId }, callback);
-	};
+  self.model = mongoose.model('Conta', model)
 
-	self.insert = function(conta, callback) {
-		var model = new self.model(conta);
-		model.save(callback);
-	};
+  self.list = function (callback) {
+    self.model.find(callback)
+  }
 
-	self.update = function(conta, callback) {
-		var model = new self.model(conta);
-		model.update(callback);
-	};
+  self.search = function (contaId, callback) {
+    self.model.findOne({ id: contaId }, callback)
+  }
 
-	self.remove = function(conta, callback) {
-		var model = new self.model(conta);
-		model.remove(callback);
-	};
+  self.insert = function (conta, callback) {
+    var model = new self.model(conta)
+    model.save(callback)
+  }
 
+  self.update = function (conta, callback) {
+    var model = new self.model(conta)
+    model.update(callback)
+  }
 
-};
+  self.remove = function (conta, callback) {
+    var model = new self.model(conta)
+    model.remove(callback)
+  }
+}

@@ -1,8 +1,14 @@
 'use strict'
 
 var bodyParser = require('body-parser')
+var DAO = new require('./../dao/dao.js')
 
 module.exports = function (app) {
+  
+  var contaModel = require('./../model/contas-model.js')
+
+  var contasDAO = new DAO(contaModel)
+
   /**
    *	MECANISMOS DE BUSCAR PARAMETROS POST
    **/
@@ -13,56 +19,52 @@ module.exports = function (app) {
    *	listar todas
    **/
   app.get('/api/contas', function (req, res) {
-
-    var list = []
-
-    // listar todas as contas
-
-    res.send(list)
-
+    contasDAO.list(function (err, list) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(list)
+      }
+    })
   })
 
   /**
    *	buscar uma conta
    **/
   app.get('/api/conta/:contaId', function (req, res) {
-
-    var conta = {}
-
-    // listar todas as contas
-
-    res.send(conta)
-
+    contasDAO.search(req.params.contaId, function (err, conta) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(conta)
+      }
+    })
   })
 
   /**
    *	Inserir um conta
    **/
   app.post('/api/conta', function (req, res) {
-
-    var conta = req.body;
-
-    // gerar um id
-    // adicionar na lista
-
-    // devolver pra tela
-    res.send(conta)
-
+    contasDAO.insert(req.body, function (err, conta) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(conta)
+      }
+    })
   })
 
   /**
    *	Atualizar uma existente
    **/
   app.put('/api/conta', function (req, res) {
-
-    var conta = req.body;
-
-    // gerar um id
-    // adicionar na lista
-
-    // devolver pra tela
-    res.send(conta)
-
+    contasDAO.update(req.body, function (err, conta) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(conta)
+      }
+    })
   })
 
   /**

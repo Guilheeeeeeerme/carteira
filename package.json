@@ -4,8 +4,7 @@
   "description": "Gerenciar minha carteira",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "lint": "gulp lint"
+    "start": "node index.js"
   },
   "keywords": [
     "carteira",
@@ -14,8 +13,11 @@
   "author": "Guilherme Ferreira",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^3.0.1"
+    "bower": "^1.8.0",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
   },
   "dependencies": {
     "body-parser": "^1.17.1",

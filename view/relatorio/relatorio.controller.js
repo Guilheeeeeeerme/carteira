@@ -1,5 +1,5 @@
-angular.module('app').controller('RelatorioController', controller);
+'use strict'
 
-function controller ($scope, $http) {
+angular.module('app').controller('RelatorioController', controller)
 
-}
+function controller ($scope, $http) {}

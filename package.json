@@ -1,0 +1,25 @@
+{
+  "name": "carteira",
+  "version": "1.0.0",
+  "description": "Gerenciar minha carteira",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "gulp lint"
+  },
+  "keywords": [
+    "carteira",
+    "dinheiro"
+  ],
+  "author": "Guilherme Ferreira",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.2"
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carteira</title>
+
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="carteira/carteira.controller.js"></script>
+    <script type="text/javascript" src="relatorio/relatorio.controller.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="AppController">
+
+    <nav class="navbar navbar-default navbar-static">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="#" ng-click="showCarteira = true">Carteira</a></li>
+                <li><a href="#" ng-click="showCarteira = false">Relatório</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div ng-show="showCarteira == true" class="container-fluid" ng-include="'carteira/carteira.view.html'" ng-controller='CarteiraController as cController'></div>
+    
+    <div ng-show="showCarteira == false" class="container-fluid" ng-include="'relatorio/relatorio.view.html'" ng-controller='RelatorioController as rController'></div>
+
+</body>
+
+</html>

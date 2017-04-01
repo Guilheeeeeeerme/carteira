@@ -1,46 +1,58 @@
-'use strict'
+'use strict';
 
-angular.module('app').controller('CarteiraController', controller)
+angular.module('app').controller('CarteiraController', controller);
 
-function controller ($scope, $http) {
-  var vm = this
+controller.$inject = ['$scope'];
 
-  $scope.contas = []
+function controller ($scope) {
+	var vm = this;
 
-  vm.actionClickSubmit = actionClickSubmit
-  vm.actionClickEdit = actionClickEdit
-  vm.actionClickRemove = actionClickRemove
+	vm.actionClickSubmit = actionClickSubmit;
+	vm.actionClickEdit = actionClickEdit;
+	vm.actionClickRemove = actionClickRemove;
 
-  resetFormConta()
+	loadListOfItems();
+	
+	function loadListOfItems() {
 
-  function resetFormConta () {
-    var now = new Date()
+		$scope.items = [];
+		
+		cleanForm();
+	}
 
-    $scope.formConta = {
-      relevancia: 3,
-      tipo: 'despesa',
-      data: now,
-      time: now
-    }
-  }
+	function cleanForm () {
+		var now = new Date();
 
-  function actionClickSubmit (conta) {
-    adicionarNaLista(conta)
-    $http.post('./api/conta', conta)
-    resetFormConta()
-  }
+		$scope.formConta = {
+			relevancia: 2,
+			tipo: 'despesa',
+			data: now,
+			time: now
+		};
+	}
 
-  function actionClickEdit (conta) {
-    $http.put('./api/conta', conta)
-    $scope.formConta = conta
-  }
+	function actionClickSubmit (item) {
+		$scope.items.push(item);
 
-  function actionClickRemove (conta, indice) {
-    $http.delete('./api/conta', conta)
-    $scope.contas.splice(indice, 1)
-  }
+        /**
+		 * CRIAR ID CASO ESTEJA ADICIONANDO UM VALOR NOVO
+		 * OU,
+		 * ATUALIZAR NA LISTA CASO JA EXISTA
+         */
 
-  function adicionarNaLista (conta) {
-    $scope.contas.push(conta)
-  }
+		cleanForm();
+	}
+
+	function actionClickEdit (item) {
+        /**
+		 * PASSANDO O VALOR DA LISTA PARA O FORMULÁRIO
+         */
+		$scope.formConta = angular.copy(item);
+	}
+
+	function actionClickRemove (item, indice) {
+        /**
+		 * remover pelo indice
+         */
+	}
 }

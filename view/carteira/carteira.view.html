@@ -1,94 +1,112 @@
-<div class="col-md-4">
+<div class="col-md-6 col-sm-12">
 
     <form name="form">
 
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" ng-model="formConta.nome" class="form-control" name="nome" id="nome" placeholder="Nome" required>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" ng-model="formConta.nome" class="form-control" name="nome" id="nome"
+                       placeholder="Nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="number" min="0" ng-model="formConta.valor" class="form-control" name="valor" id="valor"
+                       placeholder="Valor" required>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" ng-model="formConta.tipo" id="optionsRadios1"
+                           value="receita" checked> Receita
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" ng-model="formConta.tipo" id="optionsRadios2"
+                           value="despesa"> Despesa
+                </label>
+            </div>
+
+            <div class="form-group" ng-if="formConta.tipo == 'receita'">
+                <label for="fonte">Fonte</label>
+                <input type="text" ng-model="formConta.fonte" class="form-control" name="fonte" id="fonte"
+                       placeholder="Fonte" required>
+            </div>
+
+            <div class="form-group" ng-if="formConta.tipo == 'despesa'">
+
+                <label for="relevancia">Relevância (
+
+                    <span ng-if="formConta.relevancia == 0" for="relevancia">Rasguei dinheiro</span>
+                    <span ng-if="formConta.relevancia == 1" for="relevancia">Não precisava</span>
+                    <span ng-if="formConta.relevancia == 2" for="relevancia">Normal</span>
+                    <span ng-if="formConta.relevancia == 3" for="relevancia">Útil</span>
+                    <span ng-if="formConta.relevancia == 4" for="relevancia">Melhor gasto ever</span> )
+
+
+                </label>
+                <input type="range" min="0" max="4" step="1" ng-model="formConta.relevancia" class="form-control"
+                       id="relevancia" placeholder="Relevância">
+
+
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="valor">Valor</label>
-            <input type="number" min="0" ng-model="formConta.valor" class="form-control" name="valor" id="valor" placeholder="Valor" required>
-        </div>
+        <div class="col-md-6 col-sm-12">
 
-        <div class="radio">
-            <label>
-                <input type="radio" name="optionsRadios" ng-model="formConta.tipo" id="optionsRadios1" value="receita" checked> Receita
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input type="radio" name="optionsRadios" ng-model="formConta.tipo" id="optionsRadios2" value="despesa"> Despesa
-            </label>
-        </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                <div uib-timepicker name="time" ng-model="formConta.time" id="time" show-meridian="true"></div>
+            </div>
 
-        <div class="form-group" ng-if="formConta.tipo == 'receita'">
-            <label for="fonte">Fonte</label>
-            <input type="text" ng-model="formConta.fonte" class="form-control" name="fonte" id="fonte" placeholder="Fonte" required>
-        </div>
+            <div class="form-group">
+                <label for="data">Data</label>
+                <div uib-datepicker name="data" ng-model="formConta.data" datepicker-options="options"></div>
+            </div>
 
-        <div class="form-group" ng-if="formConta.tipo == 'despesa'">
-
-            <label for="relevancia">Relevância (
-
-                <span ng-if="formConta.relevancia == 0" for="relevancia">Rasguei dinheiro</span>
-                <span ng-if="formConta.relevancia == 1" for="relevancia">Não precisava</span>
-                <span ng-if="formConta.relevancia == 2" for="relevancia">Normal</span>
-                <span ng-if="formConta.relevancia == 3" for="relevancia">Útil</span>
-                <span ng-if="formConta.relevancia == 4" for="relevancia">Melhor gasto ever</span> )
-
-
-            </label>
-            <input type="range" min="0" max="4" step="1" ng-model="formConta.relevancia" class="form-control" id="relevancia" placeholder="Relevância">
-
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid"
+                    ng-click="cController.actionClickSubmit(formConta)">Submit
+            </button>
 
         </div>
-
-        <div class="form-group">
-            <label for="data">Data</label>
-            <div uib-datepicker name="data" ng-model="formConta.data" class="well well-sm" datepicker-options="options"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="time">Time</label>
-            <div uib-timepicker name="time" ng-model="formConta.time" class="well well-sm" id="time" show-meridian="true"></div>
-        </div>
-
-        <button type="submit" class="btn btn-default" ng-disabled="form.$invalid" ng-click="cController.actionClickSubmit(formConta)">Submit</button>
     </form>
 
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 col-sm-12">
 
-    <table class="table">
-        <caption>Contas</caption>
+    <table class="table table-condensed">
         <thead>
             <tr>
-                <th> Nome </th>
-                <th> Valor </th>
-                <th> Tipo </th>
-                <th> Relevância </th>
-                <th> Data </th>
-                <th> Time </th>
-                <th> Edit </th>
-                <th> Remove </th>
+                <th> Nome</th>
+                <th> Valor</th>
+                <th> Tipo</th>
+                <th> Relevância</th>
+                <th> Data</th>
+                <th> Time</th>
+                <th> Edit</th>
+                <th> Remove</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="(key, conta) in contas">
-                <td>{{ conta.nome }} </td>
-                <td>{{ conta.valor }} </td>
-                <td>{{ conta.tipo }} </td>
-                <td>{{ conta.relevancia }} </td>
-                <td>{{ conta.data }} </td>
-                <td>{{ conta.time }} </td>
+            <tr ng-if="!items || !items.length || items.length == 0">
+                <td colspan="8">Nenhum Item</td>
+            </tr>
+            <tr ng-repeat="(key, item) in items">
+                <td>{{ item.nome }}</td>
+                <td>{{ item.valor }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.relevancia }}</td>
+                <td>{{ item.data | date: 'fullDate' }}</td>
+                <td>{{ item.time | date: 'mediumTime' }}</td>
                 <td>
-                    <button class="btn btn-sm btn-warning glyphicon glyphicon-pencil" ng-click="cController.actionClickEdit(conta, key)"></button>
+                    <button class="btn btn-sm btn-warning glyphicon glyphicon-pencil"
+                            ng-click="cController.actionClickEdit(item, key)"></button>
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-danger glyphicon glyphicon-remove" ng-click="cController.actionClickRemove(conta, key)"></button>
+                    <button class="btn btn-sm btn-danger glyphicon glyphicon-remove"
+                            ng-click="cController.actionClickRemove(item, key)"></button>
                 </td>
             </tr>
         </tbody>

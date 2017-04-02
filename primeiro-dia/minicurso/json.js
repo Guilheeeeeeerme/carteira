@@ -1,8 +1,8 @@
 var pessoa = {
-	nome: "guilherme",
+	nome: 'guilherme',
 	idade: 23,
 	registradoEm: new Date()
-}
+};
 
 //console.log(pessoa);
 
@@ -22,7 +22,7 @@ delete pessoa.registradoEm;
 pessoa.endereco = {
 	rua: 'tigre maia',
 	numero: 100
-}
+};
 
 {}
 
@@ -36,7 +36,7 @@ pessoa.endereco.estado = {
 	sigla: 'MG',
 	comida: 'pao de queijo',
 	tags: ['montanha', 'uai', 'trem', 'sô', 'nóis']
-}
+};
 
 delete pessoa.cidade;
 
@@ -48,9 +48,9 @@ var estado = pessoa.endereco.estado;
 
 var pessoas = [pessoa, {
 	nome: 'thiaguinho'
-}]
+}];
 
-console.log(pessoas)
+console.log(pessoas);
 
 
 // puts, cidade nao é atributo de pessoa...

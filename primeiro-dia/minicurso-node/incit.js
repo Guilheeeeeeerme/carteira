@@ -17,7 +17,7 @@ function fecharEmpresa(empresa){
 
 	for(var i in empresas){
 		if(empresas[i] == empresa){
-			empresas.splice(i, 1)
+			empresas.splice(i, 1);
 			break;
 		}
 	}

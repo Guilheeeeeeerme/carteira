@@ -2,9 +2,9 @@
 
 angular.module('app').controller('CarteiraController', controller);
 
-controller.$inject = ['$scope'];
+controller.$inject = ['$scope', '$http'];
 
-function controller ($scope) {
+function controller ($scope, $http) {
 	var vm = this;
 
 	vm.actionClickSubmit = actionClickSubmit;
@@ -16,6 +16,10 @@ function controller ($scope) {
 	function loadListOfItems() {
 
 		$scope.items = [];
+
+		$http.get('./api/items').then(function(response){
+			$scope.items = response.data;
+		});
 		
 		cleanForm();
 	}
@@ -32,27 +36,41 @@ function controller ($scope) {
 	}
 
 	function actionClickSubmit (item) {
-		$scope.items.push(item);
 
-        /**
-		 * CRIAR ID CASO ESTEJA ADICIONANDO UM VALOR NOVO
-		 * OU,
-		 * ATUALIZAR NA LISTA CASO JA EXISTA
-         */
+		if(item._id){
+
+            /**
+			 * SE TEM ID, ENTÃO JÁ FOI SALVO NO BANCO
+			 * LOGO, ATUALIZA
+             */
+			$http.put('./api/item', item).then(function(response){
+				console.log(response);
+			});
+
+		}else{
+
+            /**
+			 * SE NÃO TEM ID, INSERE NO BANCO
+             */
+			$http.post('./api/item', item).then(function(response){
+				console.log(response);
+			});
+
+		}
 
 		cleanForm();
 	}
 
 	function actionClickEdit (item) {
-        /**
-		 * PASSANDO O VALOR DA LISTA PARA O FORMULÁRIO
-         */
 		$scope.formConta = angular.copy(item);
 	}
 
 	function actionClickRemove (item, indice) {
-        /**
-		 * remover pelo indice
-         */
+
+		$http.delete('./api/item', item).then(function(response){
+			console.log(response);
+		});
+
+		// $scope.items.splice(indice, 1);
 	}
 }

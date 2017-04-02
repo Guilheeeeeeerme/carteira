@@ -21,7 +21,8 @@ var socket = require('socket.io')(server);
 /**
  * API PARA CADASTRAR ITEMS
  */
-var itemsAPI = new require('./server/items-api.js')(app, socket);
+var API = new require('./server/items-api.js');
+var itemsAPI = new API(app, socket);
 
 /**
  * com 0.0.0.0 fica disponivel na rede

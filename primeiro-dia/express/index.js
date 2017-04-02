@@ -10,16 +10,16 @@ app.use(function (req, res, next) {
 // torna um pasta publicamente acessivel
 // primeiro argumento: caminho depois do dominio
 // segundo argumento: caminho depois desse arquivo
-app.use('/login', express.static('./view'))
+app.use('/login', express.static('./view'));
 
-app.use('/bower_components', express.static('./bower_components'))
-app.use('/', express.static('./exemplo'))
+app.use('/bower_components', express.static('./bower_components'));
+app.use('/', express.static('./exemplo'));
 
 // criando um rota estatica
 app.get('/chega-por-hoje', function(req, res){
 	setTimeout(function(){
 		res.send('sim');
-	}, 10000)
+	}, 10000);
 });
 
 app.listen(3000);

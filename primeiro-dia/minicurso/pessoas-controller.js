@@ -43,7 +43,7 @@ function buscarLista(callback){
 	setTimeout(function(){
 		var lista = [1,2,3,4,5, Math.random()];
 		callback(lista);
-	}, 5000)
+	}, 5000);
 }
 
 
@@ -58,4 +58,4 @@ function colocaListaNaTela(lista){
 	console.log(lista);
 }
 
-clickNoBotao()
+clickNoBotao();

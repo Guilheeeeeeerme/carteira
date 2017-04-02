@@ -43,11 +43,45 @@ module.exports = function (app, socket) {
 		});
 	});
 
+	socket.on('connect', function(){
+    	console.log('AppController conectou');
+		atualizaSaldo();
+	});
+
+	function atualizaSaldo() {
+
+		itemsDAO.list(function (err, list) {
+
+			var saldo = 0;
+
+			if (err) {} else {
+
+            	for(var i in list){
+            		var item = list[i];
+
+            		if(item.tipo == 'despesa'){
+            			saldo -= item.valor;
+		}else{
+            			saldo += item.valor;
+		}
+	}
+			}
+
+			socket.emit('saldo', saldo);
+
+		});
+	}
+
+
+
     /**
      *    Inserir um item
      **/
 	app.post('/api/item', function (req, res) {
 		itemsDAO.insert(req.body, function (err, item) {
+
+			atualizaSaldo();
+
 			if (err) {
 				res.send(err);
 			} else {
@@ -61,6 +95,9 @@ module.exports = function (app, socket) {
      **/
 	app.put('/api/item', function (req, res) {
 		itemsDAO.update(req.body, function (err, item) {
+
+			atualizaSaldo();
+
 			if (err) {
 				res.send(err);
 			} else {
@@ -74,6 +111,9 @@ module.exports = function (app, socket) {
      **/
 	app.delete('/api/item', function (req, res) {
 		itemsDAO.remove(req.body, function (err, item) {
+
+			atualizaSaldo();
+
 			if (err) {
 				res.send(err);
 			} else {

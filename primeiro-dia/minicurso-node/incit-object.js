@@ -24,7 +24,7 @@ module.exports = function(){
 
 		for(var i in empresas){
 			if(empresas[i] == empresa){
-				empresas.splice(i, 1)
+				empresas.splice(i, 1);
 				break;
 			}
 		}
@@ -33,4 +33,4 @@ module.exports = function(){
 	function listarEmpresas(){
 		console.log( clc.yellow(empresas) );
 	}
-}
+};

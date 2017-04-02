@@ -3,7 +3,7 @@
 
 // como POO
 var Incit = require('./incit-object.js');
-var incit = new Incit()
+var incit = new Incit();
 
 incit.abrirEmpresa('pando');
 incit.abrirEmpresa('rzx');

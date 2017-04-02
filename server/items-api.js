@@ -7,6 +7,8 @@ module.exports = function (app, socket) {
 
 	var itemModel = require('./../model/items-model.js');
 
+	// primeiro parametro: nome da collection ( = tabela no SQL)
+	// segundo parametro: estrutura da collection 
 	var itemsDAO = new DAO('item', itemModel);
 
     /**

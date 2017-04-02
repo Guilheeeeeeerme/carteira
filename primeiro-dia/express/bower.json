@@ -1,0 +1,14 @@
+{
+  "name": "express-minicurso",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Guilherme <ferreiraga@outlook.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7"
+  }
+}

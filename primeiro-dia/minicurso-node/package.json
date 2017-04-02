@@ -1,0 +1,17 @@
+{
+  "name": "minicurso-node",
+  "version": "1.0.0",
+  "description": "como usar os modulos nativos e do npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "minicurso"
+  ],
+  "author": "Guilherme Ferreira",
+  "license": "ISC",
+  "dependencies": {
+    "cli-color": "^1.2.0"
+  }
+}

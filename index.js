@@ -16,19 +16,12 @@ app.use(function (req, res, next) {
 app.use('/bower_components', express.static('bower_components'));
 app.use('/', express.static('view'));
 
-
-// var socket = require('socket.io')(server);
-//
-// console.log('Cliente connectado');
-//
-// socket.on('connection', function(){
-// 	console.log('Cliente connectado');
-// });
+var socket = require('socket.io')(server);
 
 /**
  * API PARA CADASTRAR ITEMS
  */
-var itemsAPI = new require('./server/items-api-local.js')(app, socket);
+var itemsAPI = new require('./server/items-api.js')(app, socket);
 
 /**
  * com 0.0.0.0 fica disponivel na rede

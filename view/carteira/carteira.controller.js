@@ -5,13 +5,30 @@ angular.module('app').controller('CarteiraController', controller);
 controller.$inject = ['$scope', '$http'];
 
 function controller ($scope, $http) {
+
 	var vm = this;
+	
+	$scope.relevancia = [
+		'Rasguei dinheiro',
+		'Não precisava',
+		'Normal',
+		'Útil',
+		'Melhor gasto ever'
+	];
+
+	var socket = io('http://localhost:3000');
 
 	vm.actionClickSubmit = actionClickSubmit;
 	vm.actionClickEdit = actionClickEdit;
 	vm.actionClickRemove = actionClickRemove;
 
+	cleanForm();
 	loadListOfItems();
+
+	socket.on('saldo', function(saldo){
+		// se houve alterações, atualiza minha lista toda
+	    loadListOfItems();
+	});
 	
 	function loadListOfItems() {
 
@@ -20,8 +37,6 @@ function controller ($scope, $http) {
 		$http.get('./api/items').then(function(response){
 			$scope.items = response.data;
 		});
-		
-		cleanForm();
 	}
 
 	function cleanForm () {

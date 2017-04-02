@@ -97,7 +97,7 @@
                 <td>{{ item.nome }}</td>
                 <td>{{ item.valor }}</td>
                 <td>{{ item.tipo }}</td>
-                <td ng-if="item.tipo == 'despesa'">{{ item.relevancia }}</td>
+                <td ng-if="item.tipo == 'despesa'">{{ relevancia[item.relevancia] }}</td>
                 <td ng-if="item.tipo == 'receita'">{{ item.fonte }}</td>
                 <td>{{ item.data | date: 'fullDate' }}</td>
                 <td>{{ item.time | date: 'mediumTime' }}</td>

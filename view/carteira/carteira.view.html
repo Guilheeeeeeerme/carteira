@@ -82,7 +82,7 @@
                 <th> Nome</th>
                 <th> Valor</th>
                 <th> Tipo</th>
-                <th> Relevância</th>
+                <th> Relevância/Fonte</th>
                 <th> Data</th>
                 <th> Time</th>
                 <th> Edit</th>
@@ -97,7 +97,8 @@
                 <td>{{ item.nome }}</td>
                 <td>{{ item.valor }}</td>
                 <td>{{ item.tipo }}</td>
-                <td>{{ item.relevancia }}</td>
+                <td ng-if="item.tipo == 'despesa'">{{ item.relevancia }}</td>
+                <td ng-if="item.tipo == 'receita'">{{ item.fonte }}</td>
                 <td>{{ item.data | date: 'fullDate' }}</td>
                 <td>{{ item.time | date: 'mediumTime' }}</td>
                 <td>

@@ -38,7 +38,6 @@ module.exports = function (app, socket) {
 		'Melhor gasto ever'
 	];
 
-
 	app.get('/api/gastos-por-relevancia', function (req, res) {
 		itemsDAO.list(function (err, list) {
 
@@ -53,7 +52,7 @@ module.exports = function (app, socket) {
 				for(var i in list){
 					var item = list[i];
 
-					if(item.tipo = 'despesa'){
+					if(item.tipo == 'despesa'){
 
 						if(!resultIndexed[item.relevancia]){
 
@@ -80,6 +79,50 @@ module.exports = function (app, socket) {
 			}
 		});
 	});
+
+	app.get('/api/receitas-por-fonte', function (req, res) {
+		itemsDAO.list(function (err, list) {
+
+			if (err) {
+			
+				res.send([]);
+			
+			} else {
+
+				var resultIndexed = {};
+
+				for(var i in list){
+					var item = list[i];
+
+					if(item.tipo =='receita'){
+
+						if(!resultIndexed[item.fonte]){
+
+							resultIndexed[item.fonte] = {
+								name: item.fonte,
+								y: +item.valor
+							};
+
+						}else{
+							resultIndexed[item.fonte].y += item.valor;
+						}
+
+					}
+
+				}
+
+				list = [];
+
+				for(var i in resultIndexed){
+					list.push(resultIndexed[i]);
+				}
+
+				res.send(list);
+			}
+		});
+	});
+
+	
 
     /**
      *    buscar uma item

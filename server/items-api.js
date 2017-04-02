@@ -30,6 +30,57 @@ module.exports = function (app, socket) {
 		});
 	});
 
+	var relevancia = [
+		'Rasguei dinheiro',
+		'Não precisava',
+		'Normal',
+		'Útil',
+		'Melhor gasto ever'
+	];
+
+
+	app.get('/api/gastos-por-relevancia', function (req, res) {
+		itemsDAO.list(function (err, list) {
+
+			if (err) {
+			
+				res.send([]);
+			
+			} else {
+
+				var resultIndexed = {};
+
+				for(var i in list){
+					var item = list[i];
+
+					if(item.tipo = 'despesa'){
+
+						if(!resultIndexed[item.relevancia]){
+
+							resultIndexed[item.relevancia] = {
+								name: relevancia[item.relevancia],
+								y: +item.valor
+							};
+
+						}else{
+							resultIndexed[item.relevancia].y += item.valor;
+						}
+
+					}
+
+				}
+
+				list = [];
+
+				for(var i in resultIndexed){
+					list.push(resultIndexed[i]);
+				}
+
+				res.send(list);
+			}
+		});
+	});
+
     /**
      *    buscar uma item
      **/

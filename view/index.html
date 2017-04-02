@@ -10,9 +10,11 @@
 
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
 
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.src.js"></script>
     <script type="text/javascript" src="./bower_components/socket.io-client/dist/socket.io.js"></script>
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 
+    <script type="text/javascript" src="./bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
     <script type="text/javascript" src="./bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
@@ -59,7 +61,7 @@
 
     <div ng-show="showCarteira == true" class="container-fluid" ng-include="'carteira/carteira.view.html'" ng-controller='CarteiraController as cController'></div>
     
-    <div ng-show="showCarteira == false" class="container-fluid" ng-include="'relatorio/relatorio.view.html'" ng-controller='RelatorioController as rController'></div>
+    <div ng-if="showCarteira == false" class="container-fluid" ng-include="'relatorio/relatorio.view.html'" ng-controller='RelatorioController as rController'></div>
 
 </body>
 
